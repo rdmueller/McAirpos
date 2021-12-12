@@ -34,23 +34,23 @@ chmod -R 755 /sd
 
 # 4. Set up EmulationStation
 # Delete old es_systems.cfg backup file
-if [[ -f /etc/emulationstation/es_systems.cfg_McAirpos.bak ]]; then
-   rm -f /etc/emulationstation/es_systems.cfg_McAirpos.bak
+if [[ -f /recalbox/share_init/system/.emulationstation/es_systems.cfg_McAirpos.bak ]]; then
+   rm -f /recalbox/share_init/system/.emulationstation/es_systems.cfg_McAirpos.bak
 fi
 # Installation of EmulationStation system needed for McAirpos
-if [[ -f /etc/emulationstation/es_systems.cfg ]]; then
+if [[ -f /recalbox/share_init/system/.emulationstation/es_systems.cfg ]]; then
    #Backup original es_systems.cfg file
-   cp /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg_McAirpos.bak
+   cp /recalbox/share_init/system/.emulationstation/es_systems.cfg /recalbox/share_init/system/.emulationstation/es_systems.cfg_McAirpos.bak
    # Removing MakeCode Arcade system, if present
-   sed -i '/<system>/{:a;/<\/system>/!{N;ba;}};/<name>MakeCode<\/name>/d;' /etc/emulationstation/es_systems.cfg
+   sed -i '/<system>/{:a;/<\/system>/!{N;ba;}};/<name>MakeCode<\/name>/d;' /recalbox/share_init/system/.emulationstation/es_systems.cfg
    # Appending updated MakeCode Arcade system from repository
-   sed -i '$d' /etc/emulationstation/es_systems.cfg
-   cat /home/pi/McAirpos/McAirpos/Recalbox/es_systems.cfg_MakeCode_RB >> /etc/emulationstation/es_systems.cfg
-   cp /etc/emulationstation/es_systems.cfg /recalbox/share_init/system/.emulationstation/es_systems.cfg
+   sed -i '$d' /recalbox/share_init/system/.emulationstation/es_systems.cfg
+   cat /home/pi/McAirpos/McAirpos/Recalbox/es_systems.cfg_MakeCode_RB >> /recalbox/share_init/system/.emulationstation/es_systems.cfg
+   #cp /recalbox/share_init/system/.emulationstation/es_systems.cfg /recalbox/share_init/system/.emulationstation/es_systems.cfg
    # Add MakeCode Arcade carbon theme
-   cp -r /home/pi/McAirpos/McAirpos/Recalbox/makecode /etc/emulationstation/themes/recalbox-next/
+   cp -r /home/pi/McAirpos/McAirpos/Recalbox/makecode /recalbox/share_init/system/.emulationstation/themes/recalbox-next/
 else
-   echo "Couldn't find the file /etc/emulationstation/es_systems.cfg, continuing script without..."
+   echo "Couldn't find the file /recalbox/share_init/system/.emulationstation/es_systems.cfg, continuing script without..."
 fi
 
 # 5. Create MakeCode Arcade games folder for RetroPie, if not present
